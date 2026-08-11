@@ -14,14 +14,14 @@ jobs:
               uses: actions/checkout@v4
 
             # Descomenta este bloque si tu web requiere un proceso de build (React, Angular, Vue, TypeScript, etc.)
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: "22"
-            - name: Instalar dependencias y construir
-              run: |
-                  npm ci
-                  npm run build
+            # - name: Setup Node.js
+            #   uses: actions/setup-node@v4
+            #   with:
+            #       node-version: "22"
+            # - name: Instalar dependencias y construir
+            #   run: |
+            #       npm ci
+            #       npm run build
 
             - name: Configurar credenciales de AWS
               uses: aws-actions/configure-aws-credentials@v4
@@ -33,7 +33,7 @@ jobs:
             - name: Sincronizar archivos a S3
               # Cambia './build' por la carpeta generada (ej. './dist') o por '.' si son puros archivos HTML estáticos
               run: |
-                  aws s3 sync ./dist s3://${{ secrets.AWS_S3_BUCKET }} --delete
+                  aws s3 sync ./ s3://${{ secrets.AWS_S3_BUCKET }} --delete
 
             # Opcional: Invalida la caché si estás sirviendo la web a través de CloudFront
             # - name: Invalidar caché de CloudFront
