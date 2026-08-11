@@ -38,4 +38,4 @@ jobs:
             #Opcional: Invalida la caché si estás sirviendo la web a través de CloudFront
             - name: Invalidar caché de CloudFront
               run: |
-                  aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DIST_ID }} --paths "/index.html"
+                  aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DIST_ID }} --paths "/*"
